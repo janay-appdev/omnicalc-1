@@ -30,4 +30,20 @@ class ApplicationController < ActionController::Base
 
   render({:template =>"calculation_templates/square_root_results.html.erb"})
  end
+ def blank_payment_form
+  render({:template => "calculation_templates/payment_new.html.erb"})
+ end
+ def payment_results
+  @apr= params.fetch("apr").to_f
+  @noy = params.fetch("noy").to_i
+  @p=params.fetch("p").to_f
+
+  rate=@apr/100/12
+  num_payment_period=@noy*12
+
+  top=rate*@p
+  bottom=1-((1+rate)**-num_payment_period)
+  @payments=top/bottom
+  render({:template => "calculation_templates/payment_results.html.erb"})
+ end
 end

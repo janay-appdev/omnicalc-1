@@ -1,0 +1,16 @@
+
+ <h1>Payment Results</h1>
+
+  <dl>
+   <dt>APR</dt>
+   <dd><%=@apr.to_s(:percentage,{:precision => 4} )%></dd>
+
+   <dt>Number of years </dt>
+   <dd><%=@noy %></dd>
+
+   <dt>principal</dt>
+   <dd><%=@p.to_s(:currency,{:precision=>2})%></dd>
+   <dt> Payment</dt>
+   <dd><%=@payments.to_s(:currency,{:precision=>2})%>
+  </dl>
+<a href="/payment/new">Calculate another payment
